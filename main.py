@@ -1,7 +1,7 @@
 cook_book = {}
 dish_ingredients = {}
 
-with open('recipes.txt') as file:
+with open('recipes.txt',encoding = 'utf8') as file:
     for line in file:
 
         list_dict = []
@@ -19,14 +19,26 @@ import pprint
 
 pprint.pprint(cook_book, width=100, sort_dicts=False)
 
-# Нужно написать функцию,
-# которая на вход принимает список блюд из cook_book и количество персон для кого мы будем готовить
-# На выходе мы должны получить словарь с названием ингредиентов и его количества для блюда.
-dishes = input('Введите блюда через запятую: ').split(', ')
+
+dishlist = {'1':'Омлет','2':'Утка по-пекински','3':'Запеченный картофель','4':'Фахитос'}
+dishesinput = input(f'\n 1: Омлет\n 2: Утка по-пекински\n 3: Запеченный картофель\n 4: Фахитос\n '
+                    f'Укажите номера блюд через запятую: ').split(',')
 person_count = int(input('Введите количество персон: '))
+dishes = []
+for i in range(len(dishesinput)):
+    if int(dishesinput[i]) < 0 or int(dishesinput[i]) > 4:
+        print(f'Блюда под номером {dishesinput[i]} нет')
+        continue
+
+    dishes.append(dishlist[dishesinput[i]])
 
 
 def get_shop_list_by_dishes(dishes, person_count):
+    """
+    :param dishes: блюда из меню
+    :param person_count: количество персон
+    :return: словарь с названием ингридиентов и их количество.
+    """
     dict_dishes = {}
     for dish in dishes:
         if dish not in cook_book.keys():
@@ -45,7 +57,28 @@ def get_shop_list_by_dishes(dishes, person_count):
 
     return dict_dishes
 
-
+print()
 pprint.pprint(get_shop_list_by_dishes(dishes, person_count), sort_dicts=False)
+
+count_list = []
+file1 = open('1.txt',encoding='utf8')
+#count_file1 =
+count_list.append(len(file1.readlines()))
+
+
+file2 = open('2.txt',encoding='utf8')
+#count_file2 = len(file2.readlines())
+count_list.append(len(file2.readlines()))
+
+file3 = open('3.txt',encoding='utf8')
+#count_file3 = len(file3.readlines())
+count_list.append(len(file3.readlines()))
+
+file_result = open('result.txt',encoding='utf8')
+
+print(sorted(count_list))
+
+
+
 
 
