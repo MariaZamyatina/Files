@@ -1,7 +1,10 @@
+######### Задание 1 ##########
+print('Задание №1')
+print()
 cook_book = {}
 dish_ingredients = {}
 
-with open('recipes.txt',encoding = 'utf8') as file:
+with open('recipes.txt', encoding='utf8') as file:
     for line in file:
 
         list_dict = []
@@ -19,9 +22,12 @@ import pprint
 
 pprint.pprint(cook_book, width=100, sort_dicts=False)
 
+##### Задание 2 ########
+print()
+print('Задание №2')
 
-dishlist = {'1':'Омлет','2':'Утка по-пекински','3':'Запеченный картофель','4':'Фахитос'}
-dishesinput = input(f'\n 1: Омлет\n 2: Утка по-пекински\n 3: Запеченный картофель\n 4: Фахитос\n '
+dishlist = {'1': 'Омлет', '2': 'Утка по-пекински', '3': 'Запеченный картофель', '4': 'Фахитос'}
+dishesinput = input(f'Меню: \n 1: Омлет\n 2: Утка по-пекински\n 3: Запеченный картофель\n 4: Фахитос\n '
                     f'Укажите номера блюд через запятую: ').split(',')
 person_count = int(input('Введите количество персон: '))
 dishes = []
@@ -57,28 +63,35 @@ def get_shop_list_by_dishes(dishes, person_count):
 
     return dict_dishes
 
-print()
+
+print(f'\n Список ингридиентов: \n')
 pprint.pprint(get_shop_list_by_dishes(dishes, person_count), sort_dicts=False)
 
-count_list = []
-file1 = open('1.txt',encoding='utf8')
-#count_file1 =
-count_list.append(len(file1.readlines()))
+##### Задание 3 ######
+print()
+print('Задание 3')
 
 
-file2 = open('2.txt',encoding='utf8')
-#count_file2 = len(file2.readlines())
-count_list.append(len(file2.readlines()))
+def new_text(file1, file2, file3, file4):
+    dict_files = {'1': file1, '2': file2, '3': file3}
 
-file3 = open('3.txt',encoding='utf8')
-#count_file3 = len(file3.readlines())
-count_list.append(len(file3.readlines()))
+    # dict_files = {'1': '1.txt', '2': '2.txt', '3': '3.txt'}
+    dict_files_length = {}
 
-file_result = open('result.txt',encoding='utf8')
+    for v in dict_files.values():
+        file = open(v, encoding='utf8')
+        length = len(file.readlines())
+        dict_files_length[length] = v
 
-print(sorted(count_list))
+        result_file = file4
+        result_file = open(result_file, 'a', encoding='utf8')  # result_file = open('result.txt', 'a', encoding='utf8')
+
+    for i in range(len(dict_files_length)):
+        result_file.writelines(str(dict_files_length[sorted(dict_files_length)[i]]) + '\n')
+        result_file.write(str(sorted(dict_files_length)[i]))
+        result_file.write('\n' + open(dict_files_length[sorted(dict_files_length)[i]], encoding='utf8').read() + '\n')
+    print()
+    print(f'Текст из файлов записан в {file4}')
 
 
-
-
-
+new_text('1.txt', '2.txt', '3.txt', 'result.txt')
